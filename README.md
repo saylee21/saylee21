@@ -30,9 +30,9 @@ Building inference infrastructure in public, one merged fix at a time -> [@say_l
 
 ### Building now
 
-A conformance suite for OpenAI-compatible gateways. It checks the contract, not just the JSON: `finish_reason` after a `max_tokens` cut, `usage` that adds up, request ids that survive the hop, `[DONE]` at the end of a stream, and buffered streams that fake a fast first token.
+A public conformance suite for OpenAI-compatible gateways: [openai-gateway-conformance](https://github.com/saylee21/openai-gateway-conformance). It checks the contract, not just the JSON: `finish_reason` after a `max_tokens` cut, `usage` that adds up, request ids that survive the hop, one finish event per stream, usage after finish, non-cumulative deltas, `[DONE]` at the end, and buffered streams that fake a fast first token.
 
-The first version runs 16 tests and 7 fault modes against a mock server, with a pass/fail matrix. It is CPU-first, so it runs in CI without a GPU. Next targets: AIBrix and llm-d-router.
+The first version runs 19 tests and 10 fault modes, with a pass/fail matrix. It is CPU-first, so it runs in CI without a GPU. The mock passes 19/19 and catches 10/10 faults. LiteLLM 1.106.0 passes 15/19, with four recorded gaps in error shape and request tracing. Next targets: AIBrix and llm-d-router.
 
 ### Selected open work
 
