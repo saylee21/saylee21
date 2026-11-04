@@ -8,12 +8,15 @@ Building inference infrastructure in public, one merged fix at a time -> [@say_l
 
 **Now:** working across the Kubernetes inference stack: [llm-d-router](https://github.com/llm-d/llm-d-router) for prefix-cache-aware routing and KV events, [AIBrix](https://github.com/vllm-project/aibrix) for the OpenAI-compatible gateway and batch/file APIs, [kueue](https://github.com/kubernetes-sigs/kueue) for GPU job scheduling, [KServe](https://github.com/kserve/kserve) for model serving, and [kgateway](https://github.com/kgateway-dev/kgateway) for Gateway API behavior. Also sending fixes to [litellm](https://github.com/BerriAI/litellm), [Knative](https://github.com/knative/serving), [Volcano](https://github.com/volcano-sh/volcano), and [Crossplane](https://github.com/crossplane/crossplane).
 
-**13 merged upstream** across AIBrix, llm-d-router, kueue and kgateway.
+**16 merged upstream** across AIBrix, llm-d-router, kueue and kgateway.
 
 ### Merged upstream
 
 | PR | What it fixed |
 |---|---|
+| [llm-d-router#3803](https://github.com/llm-d/llm-d-router/pull/3803) | keep an explicit zero cache read in Anthropic usage |
+| [llm-d-router#3688](https://github.com/llm-d/llm-d-router/pull/3688) | select the token producer backend explicitly |
+| [llm-d-router#3672](https://github.com/llm-d/llm-d-router/pull/3672) | cover the default utilization filter with prefix affinity |
 | [llm-d-router#3674](https://github.com/llm-d/llm-d-router/pull/3674) | cancel an abandoned enqueue when the client can no longer address it |
 | [llm-d-router#3484](https://github.com/llm-d/llm-d-router/pull/3484) | release per-request producer state on early return |
 | [llm-d-router#3378](https://github.com/llm-d/llm-d-router/pull/3378) | separate the model name and cache salt in the prefix-cache block hash, so distinct models no longer collide |
@@ -36,7 +39,6 @@ The first version runs 19 tests and 10 fault modes, with a pass/fail matrix. It 
 
 ### Selected open work
 
-- [llm-d-router#3803](https://github.com/llm-d/llm-d-router/pull/3803): keep an explicit zero cache read in Anthropic usage
 - [llm-d-router#3702](https://github.com/llm-d/llm-d-router/pull/3702): report live-only pods and snapshot load duration from KV events
 - [kueue#18118](https://github.com/kubernetes-sigs/kueue/pull/18118): drop every unhealthy node the new assignment leaves
 - [kserve#6517](https://github.com/kserve/kserve/pull/6517): report Ready from the deployment's Available condition
