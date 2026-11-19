@@ -2,6 +2,8 @@
 
 **I work on the layer between a request and the model.** Routing, scheduling, and observability for LLM serving on Kubernetes. I find the bug, measure it, fix it, and land the fix in the project that owns it.
 
+Nobody assigns this work. I pick the problem from what actually breaks in a deployment, and I stay with it until a maintainer merges it.
+
 **29 merged pull requests upstream:** llm-d-router 11, vLLM AIBrix 8, Flux 4, kueue 3, kgateway 2, Volcano 1.
 
 Writing about inference and serving internals at [@say_lee_x](https://x.com/say_lee_x).
@@ -16,7 +18,7 @@ It is not a bug in the scaler. The router sends each request to the replica that
 
 That is right for latency and wrong for capacity. The fleet looks balanced on paper and is lopsided in practice.
 
-So I work on both halves. Making it visible: per endpoint publish outcomes, staleness, and cycle duration on the cross-replica data path ([#4255](https://github.com/llm-d/llm-d-router/pull/4255)). Making it fixable: a design issue arguing that joining, draining, and leaving endpoints are states, not a boolean ([#4308](https://github.com/llm-d/llm-d-router/issues/4308)).
+So I work on both halves. Making it visible: publish-side metrics landed upstream as [#4180](https://github.com/llm-d/llm-d-router/pull/4180). I had written the same three metrics, found that PR four days older than mine, and closed mine instead of competing for it. The read side, how stale a replica's peer view is, has no owner and is next. Making it fixable: a design issue arguing that joining, draining, and leaving endpoints are states, not a boolean ([#4308](https://github.com/llm-d/llm-d-router/issues/4308)).
 
 ---
 
